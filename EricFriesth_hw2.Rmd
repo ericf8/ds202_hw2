@@ -19,3 +19,28 @@ ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes())
 
 ```
 
+2. 
+
+```{r, echo=FALSE}
+
+library(classdata)
+fbi
+ggplot(fbi, aes('Year', 'Type=='Motor.vehicle.theft'')) + geom_line()
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
