@@ -8,14 +8,20 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+https://github.com/ericf8/ds202_hw2
+
 ## Part 1
 
 1. This color issue can be easily solved by moving "colour = "blue"" outside the aes()
 
 ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes()) + ggtitle("Scatter with Blue Points")
+
 ```{r, echo=FALSE}
+
 library(ggplot2)
-ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes()) + ggtitle("Scatter with Blue Points")
+
+ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes()) + labs(title="Scatter with Blue Points")
 
 ```
 
@@ -23,21 +29,42 @@ ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes()) + ggtitle("Sca
 
 ```{r, echo=FALSE}
 
+#Call tidyverse from library to make sure I have everything and it's all up to date
+library(tidyverse)
+#Call classdata from library to make sure I have everything and it's all up to date
 library(classdata)
-fbi
-ggplot(fbi, aes(fbi$Year, fbi$Type)) + geom_line() + labs(title="Motor vehicle theft over time", x="Motor Vehicle Thefts", y="Year")
+
+#Create a subset of fbiwide with the condition that it is every state except California
+notCali = subset(fbiwide, fbiwide$State != "California") 
+
+#Create a subset of fbiwide with the condition that it is on the state California
+cali = subset(fbiwide, fbiwide$State == "California")
+
+#Create a plot with two separate geom_lines
+ggplot(data = notCali) + geom_line(aes(x = Year, y = Motor.vehicle.theft, group = notCali$State), colour = "dark turquoise") + geom_line(data = cali, aes(x = Year, y = Motor.vehicle.theft, group = cali$State), colour = "red") + labs(title="Motor vehicle theft over time", x="Year", y="Motor Vehicle Thefts") 
+
+#Would like some help on how to set up a legend. My partner Ash and I looked all over stackoverflow, reddit, and rstudio documentation and couldn't get it to work. So sorry about that.
+```
+
+3. 
+
+```{r, echo=FALSE}
+
+#To get the boxes to work, you first are able to remove the coord flip and place the variable and log count within the aes()
+ggplot(fbi, aes(fbi$Violent.crime, log(Count))) + geom_boxplot() + labs(title = "Boxplot of Violent Crimes", x = "Violent Crime", y = "Count")
 
 ```
 
+4. 
 
+```{r, echo=FALSE}
 
+#Found a rstudio tutorial that showed me that we are able to facet wrap using displ as long as the variables and dataset used are correctly defined
+ggplot(mpg) + geom_point(aes(x = cyl, y = hwy)) + facet_wrap(~displ)
 
+```
 
-
-
-
-
-
+5. 
 
 
 
