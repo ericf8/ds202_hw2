@@ -64,10 +64,46 @@ ggplot(mpg) + geom_point(aes(x = cyl, y = hwy)) + facet_wrap(~displ)
 
 ```
 
-5. 
+```{r, echo=FALSE}
+ggplot(mpg, aes(cty, hwy)) + geom_point()
+
+```
+
+5. For one small issue with this plot, it's not labelled well (x and y as well as a meaningful title). I propose adding labels as well as group/color this plot by Manufacturer.
+
+ggplot(mpg, aes(cty, hwy, color = mpg$manufacturer)) + geom_point() + labs(title = "City vs Highway MPG", x="City MPG", y="Highway MPG")
+
+```{r, echo=FALSE}
+
+ggplot(mpg, aes(cty, hwy, color = mpg$manufacturer)) + geom_point() + labs(title = "City vs Highway MPG", x="City MPG", y="Highway MPG")
+
+```
+
+6. Based on this plot, the average mpgs of cars in the 1999s had a higher mpg.
+
+```{r, echo=FALSE}
+
+#Created a variable for average mpg by adding the city and highway mpgs together and dividing by 2
+avgMPG = (mpg$cty + mpg$hwy) / 2
+
+#scatter plotted the data to show the model vs their average mpg by the years 1999 and 2008
+#ggplot(mpg, aes(avgMPG, class, color = year)) + geom_point() + labs(title = "Average MPG of Classes of Cars by Year", x="Average MPG", y="Class/Model of Car")
+
+cars1999 = subset(mpg, year == 1999)
+cars2008 = subset(mpg, year == 2008)
 
 
+```
 
+7. 
+
+```{r, echo=FALSE}
+
+head(diamonds)
+
+ggplot(diamonds, aes(price, fill = cut, binwidth = .1)) + geom_histogram() + labs(title = "Distribution of Diamond Prices", x = "Price (USD)", y = "Frequency")
+
+```
 
 
 
