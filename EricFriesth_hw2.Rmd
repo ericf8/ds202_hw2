@@ -101,11 +101,8 @@ cars2008 = subset(mpg, year == 2008)
 
 ```{r, echo=FALSE}
 
-head(diamonds)
-
-ggplot(diamonds, aes(price, fill = cut, binwidth = .1)) + geom_histogram() + labs(title = "Distribution of Diamond Prices", x = "Price (USD)", y = "Frequency")
+# Created a histogram showing the distribution of diamonds prices displaying the cut as well.
+ggplot(diamonds, aes(price, fill = cut)) + geom_histogram() + labs(title = "Distribution of Diamond Prices", x = "Price (USD)", y = "Frequency")
 
 ```
-
-
 
