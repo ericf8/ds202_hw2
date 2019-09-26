@@ -19,7 +19,7 @@ https://github.com/ericf8/ds202_hw2
 
 ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes()) + ggtitle("Scatter with Blue Points")
 
-```{r, echo=FALSE}
+```{r}
 
 library(ggplot2)
 
@@ -29,7 +29,7 @@ ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes()) + labs(title="
 
 2. 
 
-```{r, echo=FALSE}
+```{r}
 
 #Call tidyverse from library to make sure I have everything and it's all up to date
 library(tidyverse)
@@ -50,7 +50,7 @@ ggplot(data = notCali) + geom_line(aes(x = Year, y = Motor.vehicle.theft, group 
 
 3. 
 
-```{r, echo=FALSE}
+```{r}
 
 #To get the boxes to work, you first are able to remove the coord flip and place the variable and log count within the aes()
 ggplot(fbi, aes(fbi$Violent.crime, log(Count))) + geom_boxplot() + labs(title = "Boxplot of Violent Crimes", x = "Violent Crime", y = "Count")
@@ -59,14 +59,16 @@ ggplot(fbi, aes(fbi$Violent.crime, log(Count))) + geom_boxplot() + labs(title = 
 
 4. 
 
-```{r, echo=FALSE}
+```{r}
 
 #Found a rstudio tutorial that showed me that we are able to facet wrap using displ as long as the variables and dataset used are correctly defined
 ggplot(mpg) + geom_point(aes(x = cyl, y = hwy)) + facet_wrap(~displ)
 
 ```
 
-```{r, echo=FALSE}
+## Part 2
+
+```{r}
 ggplot(mpg, aes(cty, hwy)) + geom_point()
 
 ```
@@ -75,7 +77,7 @@ ggplot(mpg, aes(cty, hwy)) + geom_point()
 
 ggplot(mpg, aes(cty, hwy, color = mpg$manufacturer)) + geom_point() + labs(title = "City vs Highway MPG", x="City MPG", y="Highway MPG")
 
-```{r, echo=FALSE}
+```{r}
 
 ggplot(mpg, aes(cty, hwy, color = mpg$manufacturer)) + geom_point() + labs(title = "City vs Highway MPG", x="City MPG", y="Highway MPG")
 
@@ -83,7 +85,7 @@ ggplot(mpg, aes(cty, hwy, color = mpg$manufacturer)) + geom_point() + labs(title
 
 6. Based on this plot, the average mpgs of cars in the 1999s had a higher mpg.
 
-```{r, echo=FALSE}
+```{r}
 
 #Created a variable for average mpg by adding the city and highway mpgs together and dividing by 2
 avgMPG = (mpg$cty + mpg$hwy) / 2
@@ -97,12 +99,18 @@ cars2008 = subset(mpg, year == 2008)
 
 ```
 
-7. 
+7. The distribution of Price on the Dataset Diamonds is positively skewed and the scatter plot shows a slightly positive correlation between Price and Carat. 
 
-```{r, echo=FALSE}
+```{r}
 
 # Created a histogram showing the distribution of diamonds prices displaying the cut as well.
-ggplot(diamonds, aes(price, fill = cut)) + geom_histogram() + labs(title = "Distribution of Diamond Prices", x = "Price (USD)", y = "Frequency")
+ggplot(diamonds, aes(price, fill = cut)) + geom_histogram(bins = 54000, binwidth = 600) + labs(title = "Distribution of Diamond Prices by Cut", x = "Price (USD)", y = "Frequency")
+
+# Created a scatter plot showing the price by carat.
+ggplot(diamonds, aes(carat, price, group = clarity)) + geom_point() + labs(title= "Price of Diamond by its Carat", x="Carat", y="Price")
+
+# Displayed just the nonlinear regressions to show the trend of the Price of a diamond by its carat and its clarity.
+ggplot(diamonds, aes(carat, price, color = clarity, group = clarity)) + labs(title= "Price of Diamond by its Carat", x="Carat", y="Price") + geom_smooth()
 
 ```
 
