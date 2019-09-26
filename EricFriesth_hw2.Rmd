@@ -12,10 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1. This color issue can be easily solved by moving "colour = "blue"" outside the aes()
 
-ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes())
+ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes()) + ggtitle("Scatter with Blue Points")
 ```{r, echo=FALSE}
 library(ggplot2)
-ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes())
+ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes()) + ggtitle("Scatter with Blue Points")
 
 ```
 
@@ -25,7 +25,7 @@ ggplot(mpg, aes(displ, hwy)) + geom_point(colour = "blue", aes())
 
 library(classdata)
 fbi
-ggplot(fbi, aes('Year', 'Type=='Motor.vehicle.theft'')) + geom_line()
+ggplot(fbi, aes(fbi$Year, fbi$Type)) + geom_line() + labs(title="Motor vehicle theft over time", x="Motor Vehicle Thefts", y="Year")
 
 ```
 
